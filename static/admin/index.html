@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLACK HORSE Admin</title>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACK HORSE - Panel de Control</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
 </head>
 <body>
-  <script>
-    CMS.init({
-      config: {
-        backend: {
-          name: "github",
-          repo: "aimemexico1-cat/Dise-oIAmexico",
-          branch: "main",
-        },
-        media_folder: "static/images",
-        public_folder: "/images",
-        collections: [
-          {
-            name: "pages",
-            label: "Pages",
-            files: [
-              {
-                file: "src/pages/index.md",
-                label: "Home Page",
-                name: "home",
-                fields: [
-                  { label: "Título", name: "title", widget: "string" },
-                  { label: "Imagen", name: "hero_image", widget: "image" },
-                  { label: "Contenido", name: "body", widget: "markdown" }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    });
-  </script>
+    <div class="loading">
+        <h1>🐎 BLACK HORSE</h1>
+        <p>Cargando panel de administración...</p>
+    </div>
+
+    <!-- CMS versión compatible -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+    
+    <script>
+        // Esperar a que cargue el CMS
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CMS !== 'undefined') {
+                CMS.init({
+                    config: {
+                        backend: {
+                            name: "github",
+                            repo: "aimemexico1-cat/Dise-oIAmexico",
+                            branch: "main",
+                        },
+                        local_backend: true,
+                        media_folder: "static/images",
+                        public_folder: "/images",
+                        collections: [
+                            {
+                                name: "pages",
+                                label: "Páginas",
+                                files: [
+                                    {
+                                        file: "src/pages/index.md",
+                                        label: "Página Principal",
+                                        name: "home",
+                                        fields: [
+                                            { label: "Título", name: "title", widget: "string" },
+                                            { label: "Imagen Principal", name: "hero_image", widget: "image" },
+                                            { label: "Contenido", name: "body", widget: "markdown" }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                });
+                console.log("✅ CMS inicializado");
+            } else {
+                console.error("❌ CMS no cargado");
+                document.querySelector('.loading').innerHTML = '<h2>Error: Recarga la página</h2>';
+            }
+        });
+    </script>
 </body>
 </html>
