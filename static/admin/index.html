@@ -3,10 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLACK HORSE - Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <title>BLACK HORSE Admin</title>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "aimemexico1-cat/Dise-oIAmexico",
+          branch: "main",
+        },
+        media_folder: "static/images",
+        public_folder: "/images",
+        collections: [
+          {
+            name: "pages",
+            label: "Pages",
+            files: [
+              {
+                file: "src/pages/index.md",
+                label: "Home Page",
+                name: "home",
+                fields: [
+                  { label: "Título", name: "title", widget: "string" },
+                  { label: "Imagen", name: "hero_image", widget: "image" },
+                  { label: "Contenido", name: "body", widget: "markdown" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>
