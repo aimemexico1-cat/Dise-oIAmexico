@@ -14,6 +14,6 @@ collections:
         label: "Home Page"
         name: "home"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Hero Image", name: "hero_image", widget: "image"}
-          - {label: "Content", name: "body", widget: "markdown"}
+          - {label: "Título Principal", name: "title", widget: "string"}
+          - {label: "Imagen Hero", name: "hero_image", widget: "image"}
+          - {label: "Contenido", name: "body", widget: "markdown"}
